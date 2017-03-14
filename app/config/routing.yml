@@ -1,0 +1,47 @@
+app_moderateur:
+    resource: "@AppBundle/Controller/ModerateurController.php"
+    type:     annotation
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
+app_partenaire:
+    resource: "@AppBundle/Controller/PartenaireController.php"
+    type:     annotation
+
+app_demande:
+    resource: "@AppBundle/Controller/DemandeController.php"
+    type:     annotation
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /user
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+# app/config/routing.yml
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

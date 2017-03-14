@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: 5432
+    database_name: symfony
+    database_user: boscp
+    database_password: boscp
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: a5a06b5489369315e9c1d48c1cf2b15b0ad37752

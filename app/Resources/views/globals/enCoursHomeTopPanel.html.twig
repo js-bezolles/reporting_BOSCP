@@ -1,0 +1,54 @@
+<table style="height: 100%; width:100%;">
+    <tr style="height: 50%; border-bottom: 1px solid #eee;">
+        <td>
+            <div class="top-panel-libelle">
+                Demandes non traitées à ce jour
+            </div>
+            <div class="top-panel-data top-panel-main-data" data-toggle="tooltip" title="Demandes non traitées à date">
+                {{ demandeEnCours }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Demandes non traitées reçues avant 48h
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Demandes reçues avant 48h non traitées à date">
+                {{ demandeEnCoursAvant48h }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Demandes reçues aujourd'hui
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Demandes reçues aujourd'hui">
+                {{ demandeEnCoursAuj }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="top-panel-libelle">
+                Date de reception de la demande non traitée la plus ancienne
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Date de la demande non traitées la plus ancienne">
+                {{ datePlusAncienneEnCours }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Durée moyenne de traitement sur la semaine passée
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Durée moyenne entre la date de reception et la date de traitement d'une demande modérée sur les 7 derniers jours">
+                {{ avgDeltaTraitement }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Délai moyen de traitement sur la semaine passée
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Durée moyenne entre la date de reception et la date de traitement ou aujourd'hui d'une demande modérée reçue sur les 7 derniers jours">
+                {{ avgDeltaDelaiTraitement }}
+            </div>
+        </td>
+    </tr>
+</table>

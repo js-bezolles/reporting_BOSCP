@@ -1,0 +1,51 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered"  id="{{ idTable }}">
+        <thead>
+        <tr>
+            <th># Demande</th>
+            <th>Etat</th>
+            <th>Origine</th>
+            <th>Confirm Pro</th>
+            <th># EPJ</th>
+            <th>Nat Pro</th>
+            <th>Date Réception</th>
+            <th>Type Jour Réception</th>
+            <th>Date Traitement</th>
+            <th>Type Jour Traitement</th>
+            <th>Modérateur</th>
+            <th>Label DD</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>{{ demande.numdemande }}</td>
+                <td>{{ demande.codetatdemande }}</td>
+                <td>{{ demande.codeorigine }}</td>
+                <td>{{ demande.indconfirmpro }}</td>
+                <td>{{ demande.numepj }}</td>
+                <td>{{ demande.natpro }}</td>
+                <td>{% if demande.datereception %}{{ demande.datereception|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if demande.datereception %}{{ demande.datereception|date('l')|replace({'Monday':'Lundi','Tuesday':'Mardi', 'Wednesday':'Mercredi', 'Thursday':'Jeudi', 'Friday':'Vendredi', 'Saturday':'Samedi', 'Sunday':'Dimanche'}) }}{% endif %}</td>
+                <td>{% if demande.datetrt %}{{ demande.datetrt|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if demande.datetrt %}{{ demande.datetrt|date('l')|replace({'Monday':'Lundi','Tuesday':'Mardi', 'Wednesday':'Mercredi', 'Thursday':'Jeudi', 'Friday':'Vendredi', 'Saturday':'Samedi', 'Sunday':'Dimanche'}) }}{% endif %}</td>
+                <td>{{ demande.moderateur }}</td>
+                <td>{{ demande.imlabeldd }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $('table#{{ idTable }}').DataTable(
+            {
+                "language":{
+                    "url" :"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "bScrollCollapse": true,
+                "sScrollY": "400px"
+            }
+        );
+    } );
+</script>

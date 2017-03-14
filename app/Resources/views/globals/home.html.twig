@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--<div class="alert alert-info">
+        Date de la derniere extraction :
+        
+    </div>-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-body" id="home-top-body-panel">
+                    <div class="col-md-2 home-top-inner-body-div" id="ratioHomeTopPanel">
+                        {% include 'globals/ratioHomeTopPanel.html.twig' %}
+                    </div>
+                    <div class="col-md-3 home-top-inner-body-div" id="traiteesHomeTopPanel">
+                        {% include 'globals/traiteesHomeTopPanel.html.twig' %}
+                    </div>
+                    <div class="col-md-5 home-top-inner-body-div" id="enCoursHomeTopPanel">
+                        {% include 'globals/enCoursHomeTopPanel.html.twig' %}
+                    </div>
+                    <div class="col-md-2 home-top-inner-body-div" id="partenaireHomeTopPanel">
+                        <table id="partenaire_filter_table">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <tr>
+                                    <td class="demande-filter clickable" id="0">
+                                        Total
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {% for partenaire in app.user.partenaires %}
+                                {% include 'globals/ligneTablePartenaire.html.twig' with {'id' : partenaire.id, 'nom' : partenaire.nom} %}
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12"  id="line-chart-4week-panel">
+                        <div class="canvas-wrapper" id="canvas-4week">
+                            {% include 'tools/loader.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        {% include 'tools/loader.html.twig' with {'id' : 'genericLoader'} %}
+    </div>
+
+    <script>
+        $(document).ready(function(){
+
+        });
+
+        window.onload = function(){
+            $('#partenaire_filter_table td').first().addClass('demande-filter-selected');
+
+
+            $('#ratioHomeTopPanelLoader').hide();
+            $('#traiteesHomeTopPanelLoader').hide();
+            $('#enCoursHomeTopPanelLoader').hide();
+
+            // Creation du graph
+            $.ajax({
+                url: '{{ path('demande_chart_builder') }}',
+                success: function(data){
+                    $('#canvas-4week').html(data);
+                }
+            });
+        };
+    </script>
+{% endblock %}

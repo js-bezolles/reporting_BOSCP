@@ -1,0 +1,45 @@
+<?php
+// src/AppBundle/Entity/Partenaire.php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PartenaireRepository")
+ * @ORM\Table(name="partenaire")
+ */
+class Partenaire
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Moderateur", mappedBy="partenaires")
+     */
+    private $moderateurs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="partenaires")
+     */
+    private $users;
+
+    public function __construct() {
+        $this->moderateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->nom != null ? $this->nom : "";
+    }
+
+}

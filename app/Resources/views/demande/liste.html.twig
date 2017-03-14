@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="titre-liste">Liste des Demandes</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th># Demande</th>
+                {#<th>Code Etat</th>#}
+                <th>Origine</th>
+                <th># EPJ</th>
+                <th>Date Réception</th>
+                <th>Date Traitement</th>
+                <th>Modérateur</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for demande in demandes %}
+                <tr>
+                    <td>{{ demande.numdemande }}</td>
+                    {#<td>{{ demande.codetatdemande }}</td>#}
+                    <td>{{ demande.codeorigine }}</td>
+                    <td>{{ demande.numepj }}</td>
+                    <td>{% if demande.datereception %}{{ demande.datereception|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if demande.datetrt %}{{ demande.datetrt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ demande.moderateur }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

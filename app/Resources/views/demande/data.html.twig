@@ -1,0 +1,14 @@
+[
+{% for demande in demandes %}
+    [
+        {{ demande.numdemande }},
+        {{ demande.codeorigine }},
+        {{ demande.numepj }},
+        {% if demande.datereception %}{{ demande.datereception|date('Y-m-d') }}{% endif %},
+        {% if demande.datereception %}{{ demande.datereception|date('H:i') }}{% endif %},
+        {% if demande.datetrt %}{{ demande.datetrt|date('Y-m-d') }}{% endif %},
+        {% if demande.datetrt %}{{ demande.datetrt|date('H:i') }}{% endif %},
+        {{ demande.moderateur }}
+    ]
+{% endfor %}
+]

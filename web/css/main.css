@@ -1,0 +1,134 @@
+body{
+    padding-top:75px;
+    padding-bottom: 75px;
+}
+
+:root{
+    --Dark-Goldenrod:#B46C0C;
+    --Saddle-Brown:#39330C;
+    --Burly-Wood:#DDBB6E;
+    --Midnight-Blue:#162C3E;
+    --Sienna:#917421;
+    --BlueCyan:rgb(144, 236, 192);
+    --YellowBright:rgb(237, 253, 46);
+}
+
+#enCours > div > table > thead
+{
+    background-color: var(--BlueCyan);
+}
+
+#traitees > div > table > thead
+{
+    background-color: var(--YellowBright);
+}
+
+.nav-tabs>li.active>a.enCours{
+    background-color: var(--BlueCyan);
+    border-bottom-color: var(--BlueCyan) !important;
+}
+
+.nav-tabs>li.active>a.traitees{
+    background-color: var(--YellowBright);
+    border-bottom-color: var(--YellowBright) !important;
+}
+
+.home-top-body-panel{
+    padding:0;
+}
+
+#traiteesHomeTopPanel, #enCoursHomeTopPanel{
+    border-left: 1px solid #ddd;
+}
+
+#home-top-body-panel{
+    padding: 0;
+}
+
+.home-top-inner-body-div{
+    height: 200px;
+}
+
+.top-panel-libelle{
+    padding-top: 7px;
+}
+
+.easypiechart-panel{
+    padding-top: 10px;
+}
+
+#partenaireHomeTopPanel{
+    padding: 0;
+}
+
+#partenaire_filter_table{
+    height: 100%;
+    width:100%;
+}
+
+#partenaire_filter_table td :first-of-type{
+    border-top:none;"
+}
+
+.demande-filter-selected{
+    border:none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.demande-filter{
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.clickable:hover{
+    cursor: pointer;
+    background-color: #d9edf7;
+}
+
+.loader{
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+svg path,
+svg rect{
+    fill: #1ab2ff;
+}
+
+.titre-liste{
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.btn.search{
+    margin:0 auto;
+    display: block;
+    width: 200px;
+}
+.btn.export{
+    margin:0 auto;
+    display: block;
+}
+
+.top-panel-libelle{
+    color: #9d9d9d;
+    min-height: 60px;
+}
+
+.top-panel-data{
+    font-size: large;
+}
+
+.top-panel-main-data{
+    font-weight: bold;
+}
+
+#between_date_search_type_jour_reception > label, #between_date_search_type_jour_traitement > label{
+    margin: 0 7px 0 2px;
+}

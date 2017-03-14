@@ -1,0 +1,34 @@
+<?php
+// src/UserBundle/Entity/User.php
+
+namespace UserBundle\Entity;
+
+use AppBundle\Entity\Partenaire;
+use FOS\UserBundle\Entity\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Partenaire", inversedBy="users")
+     * @ORM\JoinTable(name="users_partenaires")
+     */
+    private $partenaires;
+
+    public function __construct() {
+        $this->partenaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="titre-liste">Liste des Demandes</h1>
+    <hr />
+    {% include 'default/searchForm.html.twig' with {'form' : form} %}
+
+    <ul class="nav nav-tabs nav-justified">
+        {% for demande in demandes %}
+            <li {% if loop.first %}class="active"{% endif %}><a class="{{ demande.id }}" data-toggle="tab" href="#{{ demande.id }}">{{ demande.label }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="tab-content" style="padding-bottom: 100px">
+        {% for demande in demandes %}
+            <div id="{{ demande.id }}" class="tab-pane fade {% if loop.first %}in active{% endif %}">
+                {% include 'demande/table.html.twig' with {'demandes' : demande.data,'idTable' : demande.id} %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <a class="export btn btn-info" href="{{ path('export_liste_demande') }}">Exporter Tout</a>
+    <a class="export btn btn-success" href="{{ path('export_liste_demande') }}">Exporter Filtre</a>
+    <script src="{{ asset('js/demande.js') }}"></script>
+
+{% endblock %}

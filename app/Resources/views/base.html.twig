@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Reporting BOSCP{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/app/datepicker/css/bootstrap-datepicker3.min.css') }}">
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+
+    {% include 'navbar.html.twig'%}
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+
+
+
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+            <script src="{{ asset('bundles/app/datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/datepicker/locales/bootstrap-datepicker.fr.min.js') }}"></script>
+            <script src="{{ asset('js/easypiechart-data.js') }}"></script>
+            <script src="{{ asset('js/easypiechart.js') }}"></script>
+            <script src="{{ asset('js/chart.js') }}"></script>
+            <script src="{{ asset('js/chart-data.js') }}"></script>
+            <script src="{{ asset('js/javascript.js') }}"></script>
+
+        {% endblock %}
+    </body>
+    {% include 'footer.html.twig'%}
+</html>

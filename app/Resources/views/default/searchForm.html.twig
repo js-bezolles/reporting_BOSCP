@@ -1,0 +1,54 @@
+{{ form_start(form, {'class': 'form-inline', 'attr' : {'class' : 'form-inline'}}) }}
+    {{ form_errors(form) }}
+<div class="from-group">
+    <label for="between_date_search">Date Réception entre :</label>
+    <div class="input-group col-md-12">
+        {{ form_widget(form.debut) }}
+        <div class="input-group-addon">to</div>
+        {{ form_widget(form.fin) }}
+    </div>
+    <hr />
+    <button type="button" data-toggle="collapse" data-target="#moreSearch"><span class="caret"></span></button>
+    <div id="moreSearch" class="col-md-12 collapse" style="padding-left: 0;padding-right: 0;padding-bottom: 25px;">
+
+        <div class="col-md-6 col-sm-12">
+            {{ form_label(form.num_demande) }}
+            {{ form_widget(form.num_demande) }}
+            {{ form_label(form.cod_etat_demande) }}
+            {{ form_widget(form.cod_etat_demande) }}
+            {{ form_label(form.code_origine) }}
+            {{ form_widget(form.code_origine) }}
+            {{ form_label(form.ind_confirm_pro) }}
+            {{ form_widget(form.ind_confirm_pro) }}
+            {{ form_label(form.num_epj) }}
+            {{ form_widget(form.num_epj) }}
+            {{ form_label(form.type_jour_reception) }}
+            {{ form_widget(form.type_jour_reception) }}
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {{ form_label(form.nat_pro) }}
+            {{ form_widget(form.nat_pro) }}
+            {{ form_label(form.date_reception) }}
+            {{ form_widget(form.date_reception) }}
+            {{ form_label(form.date_trt) }}
+            {{ form_widget(form.date_trt) }}
+            {{ form_label(form.moderateur) }}
+            {{ form_widget(form.moderateur) }}
+            {{ form_label(form.im_label_dd) }}
+            {{ form_widget(form.im_label_dd) }}
+            {{ form_label(form.type_jour_traitement) }}
+            {{ form_widget(form.type_jour_traitement) }}
+        </div>
+    </div>
+    {{ form_widget(form.recherche) }}
+    <hr />
+</div>
+{{ form_end(form) }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.datepicker').datepicker({
+            language: "fr"
+        });
+    });
+</script>

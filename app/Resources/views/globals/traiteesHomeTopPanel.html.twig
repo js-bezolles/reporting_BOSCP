@@ -1,0 +1,38 @@
+<table style="height: 100%; width:100%;">
+    <tr style="height: 50%; border-bottom: 1px solid #eee;">
+        <td>
+            <div class="top-panel-libelle">
+                Demandes traitées veille
+            </div>
+            <div class="top-panel-data top-panel-main-data" data-toggle="tooltip" title="Traitement Veille Total (Auto, Manuel) reçues avant aujourd'hui">
+                {{ nbTraiteesVeille }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Demandes reçues veille traitées à J
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Traitement Veille à J (Manuel) reçues hier, traitées hier">
+                {{ nbTraiteesVeilleAJ }}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="top-panel-libelle">
+                Demandes traitées Manuellement veille
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Traitement Veille modéré (Manuel) reçues avant aujourd'hui">
+                {{ nbTraiteesVeilleModerees }}
+            </div>
+        </td>
+        <td>
+            <div class="top-panel-libelle">
+                Demandes traitées en auto veille
+            </div>
+            <div class="top-panel-data" data-toggle="tooltip" title="Traitement Veille Auto Reçues avant aujourd'hui">
+                {{ nbTraiteesVeilleAuto }} soit {{ traiteesVeilleAutoPercent }} %
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Demande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ demande.id }}</td>
+            </tr>
+            <tr>
+                <th>Num_demande</th>
+                <td>{{ demande.numdemande }}</td>
+            </tr>
+            <tr>
+                <th>Cod_etat_demande</th>
+                <td>{{ demande.codetatdemande }}</td>
+            </tr>
+            <tr>
+                <th>Code_origine</th>
+                <td>{{ demande.codeorigine }}</td>
+            </tr>
+            <tr>
+                <th>Ind_confirm_pro</th>
+                <td>{{ demande.indconfirmpro }}</td>
+            </tr>
+            <tr>
+                <th>Num_epj</th>
+                <td>{{ demande.numepj }}</td>
+            </tr>
+            <tr>
+                <th>Nat_pro</th>
+                <td>{{ demande.natpro }}</td>
+            </tr>
+            <tr>
+                <th>Date_trt</th>
+                <td>{% if demande.datetrt %}{{ demande.datetrt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date_reception</th>
+                <td>{% if demande.datereception %}{{ demande.datereception|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Moderateur</th>
+                <td>{{ demande.moderateur }}</td>
+            </tr>
+            <tr>
+                <th>Im_label_dd</th>
+                <td>{{ demande.imlabeldd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('demande_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

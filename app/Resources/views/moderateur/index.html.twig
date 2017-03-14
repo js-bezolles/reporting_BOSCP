@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Moderateurs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for moderateur in moderateurs %}
+            <tr>
+                <td><a href="{{ path('moderateur_show', { 'id': moderateur.id }) }}">{{ moderateur.id }}</a></td>
+                <td>{{ moderateur.nom }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('moderateur_show', { 'id': moderateur.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('moderateur_edit', { 'id': moderateur.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('moderateur_new') }}">Create a new moderateur</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,45 @@
+/*
+Lumino Admin Bootstrap Template
+Version 1.0
+*/
+
+
+/*Charts*/
+
+.main-chart {
+	background: #fff;
+}
+
+.easypiechart-panel {
+	text-align: center;
+	padding: 1px 0;
+}
+
+.donut {
+	width: 100%;
+}
+
+.easypiechart {
+	position: relative;
+	text-align: center;
+	width: 120px;
+	height: 120px;
+	margin: 0 auto 0 auto;
+}
+
+.easypiechart .percent {
+	display: block;
+	position: absolute;
+	font-size: 26px;
+	top: 38px;
+	width: 120px;
+}
+
+#easypiechart-blue .percent { color: var(--Midnight-Blue);}
+#easypiechart-teal .percent { color: #1ebfae;}
+#easypiechart-orange .percent { color: #ffb53e;}
+#easypiechart-red .percent { color: #ef4040;}
+
+.home-top-inner-body-div svg{
+	height: 100%;
+}
