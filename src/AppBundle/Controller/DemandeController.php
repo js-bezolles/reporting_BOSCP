@@ -74,6 +74,44 @@ class DemandeController extends Controller
     }
 
     /**
+     *
+     * @Route("/export/", name="export_liste_demande_filtre", options={"expose"=true})
+     * @Method("GET")
+     *
+     */
+    public function generateCsvFiltreAction(){
+        // get the service container to pass to the closure
+        $container = $this->container;
+        $response = new StreamedResponse(function() use($container) {
+
+            $em = $container->get('doctrine')->getManager();
+            $results = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($this->getUser(),null,null,null,true);
+
+            $handle = fopen('php://output', 'r+');
+
+            foreach ($results as $demande) {
+                fputcsv(
+                    $handle,
+                    [$demande->getId(), $demande->getNumDemande(), $demande->getCodEtatDemande(),
+                        $demande->getCodeOrigine(), $demande->getIndConfirmPro(), $demande->getNumEpj(),
+                        $demande->getNatPro(), $demande->getDateTrt()->format('Y-m-d H:i:s'),
+                        $demande->getDateReception()->format('Y-m-d H:i:s'),
+                        $demande->getModerateur(), $demande->getImLabelDd()
+                    ],
+                    ';'
+                );
+            }
+
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'text/plain');
+        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
+        return $response;
+    }
+
+    /**
      * Lists all demande entities.
      *
      * @Route("", name="demande_index",options={"expose"=true})
@@ -83,19 +121,19 @@ class DemandeController extends Controller
     {
         $user = $this->getUser();
         $offset = 0;
-        $limit = 100;
+        $limit = 1000;
         $em = $this->getDoctrine()->getManager();
         $data = array();
-        $form = $this->createForm(new BetweenDateSearchType(),$data)
-            ->add('recherche', 'submit', array('attr' => array('class' => 'search btn btn-primary')));
+        $form = $this->createForm(new BetweenDateSearchType(),$data);
+//            ->add('recherche', 'submit', array('attr' => array('class' => 'btn btn-primary glyphicon glyphicon-search')));
 
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $dataResult = $form->getData();
 
-                $demandesTraitees = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,null,null,true);
-                $demandesEnCours = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,null,null,false);
+                $demandesTraitees = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,true);
+                $demandesEnCours = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,false);
 
                 return $this->render('demande/index.html.twig', array(
                     'demandes' => array (
@@ -106,7 +144,7 @@ class DemandeController extends Controller
                 ));
             }
         }
-        $demandes = $em->getRepository('AppBundle:Demande')->findByUser($user,null,null);
+        $demandes = $em->getRepository('AppBundle:Demande')->findByUser($user,$offset,$limit);
 
         return $this->render('demande/index.html.twig', array(
             'demandes' => array (

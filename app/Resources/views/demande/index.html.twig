@@ -10,7 +10,7 @@
             <li {% if loop.first %}class="active"{% endif %}><a class="{{ demande.id }}" data-toggle="tab" href="#{{ demande.id }}">{{ demande.label }}</a></li>
         {% endfor %}
     </ul>
-    <div class="tab-content" style="padding-bottom: 100px">
+    <div class="tab-content" style="border-bottom: solid 1px #ddd;border-left: solid 1px #ddd;border-right: solid 1px #ddd;">
         {% for demande in demandes %}
             <div id="{{ demande.id }}" class="tab-pane fade {% if loop.first %}in active{% endif %}">
                 {% include 'demande/table.html.twig' with {'demandes' : demande.data,'idTable' : demande.id} %}
@@ -18,8 +18,8 @@
         {% endfor %}
     </div>
 
-    <a class="export btn btn-info" href="{{ path('export_liste_demande') }}">Exporter Tout</a>
-    <a class="export btn btn-success" href="{{ path('export_liste_demande') }}">Exporter Filtre</a>
+    {#<a class="export btn btn-info" href="{{ path('export_liste_demande') }}">Exporter Tout</a>#}
+    <a class="export btn btn-primary" href="{{ path('export_liste_demande_filtre') }}">Exporter <span class="glyphicon glyphicon-save"></span></a>
     <script src="{{ asset('js/demande.js') }}"></script>
 
 {% endblock %}

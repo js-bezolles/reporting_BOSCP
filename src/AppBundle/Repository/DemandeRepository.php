@@ -75,8 +75,11 @@ class DemandeRepository extends EntityRepository
      */
     public function findByUserAndByDate($user, $data, $offset, $limit, $estDemandeTraitee)
     {
-        $debut = $data['debut'];
-        $fin = $data['fin'];
+
+        $debutRcpt = $data['debutRcpt'];
+        $finRcpt = $data['finRcpt'];
+        $debutTrt = $data['debutTrt'];
+        $finTrt = $data['finTrt'];
         $num_demande= $data['num_demande'];
         $cod_etat = $data['cod_etat'];
         $code_origin = $data['code_origin'];
@@ -151,26 +154,36 @@ class DemandeRepository extends EntityRepository
             $qb->andwhere('d.im_label_dd = :im_label_dd');
             $qb->setParameter('im_label_dd', $im_label_dd);
         }
-        if($debut != null)
+        if($debutRcpt != null)
         {
             $qb->andwhere('d.date_reception >= :debut');
-            $qb->setParameter('debut', $debut);
+            $qb->setParameter('debut', $debutRcpt);
         }
-        if($fin != null)
+        if($finRcpt != null)
         {
             $qb->andwhere('d.date_reception <= :fin');
-            $qb->setParameter('fin', $fin);
+            $qb->setParameter('fin', $finRcpt);
         }
-//        if($type_jour_reception != null)
-//        {
-//            $qb->andWhere('date_part(\'isodow\'d.date_reception,) = :type_jour_reception');
-//            $qb->setParameter('type_jour_reception', $type_jour_reception);
-//        }
-//        if($type_jour_traitement != null)
-//        {
-//            $qb->andWhere('date_part(\'isodow\'d.date_trt,) = :type_jour_traitement');
-//            $qb->setParameter('type_jour_traitement', $type_jour_traitement);
-//        }
+        if($debutTrt != null)
+        {
+            $qb->andwhere('d.date_trt >= :debut');
+            $qb->setParameter('debut', $debutTrt);
+        }
+        if($finTrt != null)
+        {
+            $qb->andwhere('d.date_trt<= :fin');
+            $qb->setParameter('fin', $finTrt);
+        }
+        if($type_jour_reception != null)
+        {
+            $qb->andWhere('DAYOFWEEK(d.date_reception) IN (:type_jour_reception)');
+            $qb->setParameter('type_jour_reception', $type_jour_reception);
+        }
+        if($type_jour_traitement != null)
+        {
+            $qb->andWhere('DAYOFWEEK(d.date_trt) IN (:type_jour_traitement)');
+            $qb->setParameter('type_jour_traitement', $type_jour_traitement);
+        }
 
         if($estDemandeTraitee)
             $qb->andWhere('d.date_trt IS NOT NULL');

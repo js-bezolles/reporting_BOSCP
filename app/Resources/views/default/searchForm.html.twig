@@ -1,17 +1,31 @@
 {{ form_start(form, {'class': 'form-inline', 'attr' : {'class' : 'form-inline'}}) }}
     {{ form_errors(form) }}
 <div class="from-group">
-    <label for="between_date_search">Date Réception entre :</label>
-    <div class="input-group col-md-12">
-        {{ form_widget(form.debut) }}
-        <div class="input-group-addon">to</div>
-        {{ form_widget(form.fin) }}
+    <div class="row">
+        <div class="col col-lg-6">
+            <label for="between_date_search">Réception entre :</label>
+            <div class="input-group col-md-12">
+                {{ form_widget(form.debutRcpt) }}
+                <div class="input-group-addon">to</div>
+                {{ form_widget(form.finRcpt) }}
+            </div>
+        </div>
+        <div class="col col-lg-6">
+            <label for="between_date_search">Traitement entre :</label>
+            <div class="input-group col-md-12">
+                {{ form_widget(form.debutTrt) }}
+                <div class="input-group-addon">to</div>
+                {{ form_widget(form.finTrt) }}
+            </div>
+        </div>
     </div>
-    <hr />
-    <button type="button" data-toggle="collapse" data-target="#moreSearch"><span class="caret"></span></button>
-    <div id="moreSearch" class="col-md-12 collapse" style="padding-left: 0;padding-right: 0;padding-bottom: 25px;">
+    <div class="row">
+        <div class="col">
 
-        <div class="col-md-6 col-sm-12">
+        </div>
+    </div>
+    <div id="moreSearch" class="row collapse">
+        <div class="col-lg-6 col-md-6 col" >
             {{ form_label(form.num_demande) }}
             {{ form_widget(form.num_demande) }}
             {{ form_label(form.cod_etat_demande) }}
@@ -25,7 +39,7 @@
             {{ form_label(form.type_jour_reception) }}
             {{ form_widget(form.type_jour_reception) }}
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-lg-6 col-md-6 col">
             {{ form_label(form.nat_pro) }}
             {{ form_widget(form.nat_pro) }}
             {{ form_label(form.date_reception) }}
@@ -40,8 +54,17 @@
             {{ form_widget(form.type_jour_traitement) }}
         </div>
     </div>
-    {{ form_widget(form.recherche) }}
-    <hr />
+    <div class="row justify-content-md-center" style="padding-top: 5px;padding-bottom: 5px;">
+        <div style="float: right;padding-right: 15px;">
+            {#{{ form_widget(form.recherche) }}#}
+            <button type="submit" id="between_date_search_recherche" name="between_date_search[recherche]" class="btn btn-primary">
+                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Rechercher
+            </button>
+            <button id="searchBtn" type="button" data-toggle="collapse" data-target="#moreSearch" class="btn btn-secondary">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
 </div>
 {{ form_end(form) }}
 
@@ -51,4 +74,8 @@
             language: "fr"
         });
     });
+    $('#searchBtn').click(function(){
+        $('#searchBtn span').toggleClass("glyphicon-plus");
+        $('#searchBtn span').toggleClass("glyphicon-minus");
+    })
 </script>

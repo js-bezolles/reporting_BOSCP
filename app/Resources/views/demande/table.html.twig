@@ -2,16 +2,16 @@
     <table class="table table-striped table-bordered"  id="{{ idTable }}">
         <thead>
         <tr>
-            <th># Demande</th>
-            <th>Etat</th>
+            <th>Demande</th>
+            {#<th>Etat</th>#}
             <th>Origine</th>
-            <th>Confirm Pro</th>
-            <th># EPJ</th>
+            {#<th>Confirm Pro</th>#}
+            <th>EPJ</th>
             <th>Nat Pro</th>
-            <th>Date Réception</th>
-            <th>Type Jour Réception</th>
-            <th>Date Traitement</th>
-            <th>Type Jour Traitement</th>
+            <th>Réception</th>
+            <th>Jour Réception</th>
+            <th>Traitement</th>
+            <th>Jour Traitement</th>
             <th>Modérateur</th>
             <th>Label DD</th>
         </tr>
@@ -20,9 +20,9 @@
         {% for demande in demandes %}
             <tr>
                 <td>{{ demande.numdemande }}</td>
-                <td>{{ demande.codetatdemande }}</td>
+                {#<td>{{ demande.codetatdemande }}</td>#}
                 <td>{{ demande.codeorigine }}</td>
-                <td>{{ demande.indconfirmpro }}</td>
+                {#<td>{{ demande.indconfirmpro }}</td>#}
                 <td>{{ demande.numepj }}</td>
                 <td>{{ demande.natpro }}</td>
                 <td>{% if demande.datereception %}{{ demande.datereception|date('Y-m-d H:i') }}{% endif %}</td>
@@ -43,8 +43,6 @@
                 "language":{
                     "url" :"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 },
-                "bScrollCollapse": true,
-                "sScrollY": "400px"
             }
         );
     } );

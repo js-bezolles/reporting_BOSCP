@@ -13,7 +13,7 @@ class BetweenDateSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('debut', 'date',array(
+        $builder->add('debutRcpt', 'date',array(
             'widget' => 'single_text',
             'format' => 'dd-MM-yyyy',
             'attr' => [
@@ -23,7 +23,27 @@ class BetweenDateSearchType extends AbstractType
             ],
             'required' => false
         ))
-            ->add('fin', 'date', array(
+            ->add('finRcpt', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'class' => 'form-control datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd-mm-yyyy'
+                ],
+                'required' => false
+            ))
+            ->add('debutTrt', 'date',array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'class' => 'form-control datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd-mm-yyyy'
+                ],
+                'required' => false
+            ))
+            ->add('finTrt', 'date', array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
                 'attr' => [
@@ -78,33 +98,33 @@ class BetweenDateSearchType extends AbstractType
             ->add('type_jour_reception', 'choice', array(
                 'label' => 'Jour de Réception',
                 'choices' => array(
-                    'Lundi' => 1,
-                    'Mardi' => 2,
-                    'Mercredi' => 3,
-                    'Jeudi' => 4,
-                    'Vendredi' => 5,
-                    'Samedi' => 6,
-                    'Dimanche' => 0
+                    'Lundi' => 2,
+                    'Mardi' => 3,
+                    'Mercredi' => 4,
+                    'Jeudi' => 5,
+                    'Vendredi' => 6,
+                    'Samedi' => 7,
+                    'Dimanche' => 8
                 ),
                 'choices_as_values' => true,
                 'expanded' => true,
                 'multiple' => true,
-                'attr' => ['style' => 'width:100%', 'class' => 'form-control'],'required' => false))
+                'attr' => ['style' => 'width:100%;height:auto;', 'class' => 'form-control'],'required' => false))
             ->add('type_jour_traitement', 'choice', array(
-                'label' => 'Jour de Réception',
+                'label' => 'Jour de Traitement',
                 'choices' => array(
-                    'Lundi' => 1,
-                    'Mardi' => 2,
-                    'Mercredi' => 3,
-                    'Jeudi' => 4,
-                    'Vendredi' => 5,
-                    'Samedi' => 6,
-                    'Dimanche' => 0
+                    'Lundi' => 2,
+                    'Mardi' => 3,
+                    'Mercredi' => 4,
+                    'Jeudi' => 5,
+                    'Vendredi' => 6,
+                    'Samedi' => 7,
+                    'Dimanche' => 8
                 ),
                 'choices_as_values' => true,
                 'expanded' => true,
                 'multiple' => true,
-                'attr' => ['style' => 'width:100%;', 'class' => 'form-control'],'required' => false));
+                'attr' => ['style' => 'width:100%;height:auto;', 'class' => 'form-control'],'required' => false));
 
     }
 
