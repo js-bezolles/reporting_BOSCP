@@ -434,12 +434,18 @@ class DemandeRepository extends EntityRepository
                 ->andWhere('p.id = :idpartenaire')
                 ->setParameter('idpartenaire', $idPartenaire);
         }
-        $date = $qb->getQuery()->getResult()[0]['date_reception'];
-
+        $date = "";
+        if($qb->getQuery()->getResult() != null){
+            $date = $qb->getQuery()->getResult()[0]['date_reception'];
+        }
 
 //        $d = \DateTime::createFromFormat('Y-m-d', explode(' ',$date[0]['d'])[0]);
         setlocale(LC_TIME, 'fr_FR.utf8','fra');
-        return strftime("%a %d/%m/%Y", $date->getTimestamp());
+        if($date != "") {
+            return strftime("%a %d/%m/%Y", $date->getTimestamp());
+        }else{
+            return "-";
+        }
     }
 
     public function averageDeltaTraitement(\DateTime $day, $idPartenaire)
