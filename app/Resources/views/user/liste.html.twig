@@ -18,7 +18,7 @@
                 <tr>
                     <td><a href="{{ path('fos_user_profile_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
                     <td>{% for partenaire in  user.partenaires %}{{ partenaire }}{% endfor %}</td>
-                    <td>{% for role in user.roles %}{{ user.role }}{% endfor %}</td>
+                    <td>{% for role in user.roles %}{{ role }}{% endfor %}</td>
                     <td><input type="checkbox" aria-label="Checkbox for following text input" disabled></td>
                     <script>
                         $(function (){
