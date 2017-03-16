@@ -110,9 +110,6 @@ svg rect{
     display: block;
     width: 200px;
 }
-.btn.export{
-    float:right;
-}
 
 .top-panel-libelle{
     color: #9d9d9d;

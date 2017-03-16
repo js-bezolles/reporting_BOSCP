@@ -81,13 +81,13 @@ class DemandeRepository extends EntityRepository
         $debutTrt = $data['debutTrt'];
         $finTrt = $data['finTrt'];
         $num_demande= $data['num_demande'];
-        $cod_etat = $data['cod_etat'];
-        $code_origin = $data['code_origin'];
+        $cod_etat = $data['cod_etat_demande'];
+        $code_origin = $data['code_origine'];
         $ind_confirm_pro = $data['ind_confirm_pro'];
         $num_epj = $data['num_epj'];
         $nat_pro = $data['nat_pro'];
-        $date_r = $data['date_r'];
-        $date_t = $data['date_r'];
+        $date_r = $data['date_reception'];
+        $date_t = $data['date_trt'];
         $moderateur = $data['moderateur'];
         $im_label_dd= $data['im_label_dd'];
         $type_jour_reception = $data['type_jour_reception'];
@@ -184,11 +184,13 @@ class DemandeRepository extends EntityRepository
             $qb->andWhere('DAYOFWEEK(d.date_trt) IN (:type_jour_traitement)');
             $qb->setParameter('type_jour_traitement', $type_jour_traitement);
         }
-
-        if($estDemandeTraitee)
-            $qb->andWhere('d.date_trt IS NOT NULL');
-        if(!$estDemandeTraitee)
-            $qb->andWhere('d.date_trt IS NULL');
+        if($estDemandeTraitee != null)
+        {
+            if($estDemandeTraitee)
+                $qb->andWhere('d.date_trt IS NOT NULL');
+            if(!$estDemandeTraitee)
+                $qb->andWhere('d.date_trt IS NULL');
+        }
         if($limit != null)
             $qb->setMaxResults( $limit );
         if($offset != null)

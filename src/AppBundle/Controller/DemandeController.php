@@ -75,7 +75,7 @@ class DemandeController extends Controller
 
     /**
      *
-     * @Route("/export/", name="export_liste_demande_filtre", options={"expose"=true})
+     * @Route("/export/csv", name="export_liste_demande_filtre", options={"expose"=true})
      * @Method("GET")
      *
      */
@@ -85,17 +85,23 @@ class DemandeController extends Controller
         $response = new StreamedResponse(function() use($container) {
 
             $em = $container->get('doctrine')->getManager();
-            $results = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($this->getUser(),null,null,null,true);
+            $results = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($this->getUser(),null,null,null,null);
 
             $handle = fopen('php://output', 'r+');
 
             foreach ($results as $demande) {
+                $dateTrt = "";
+                $dateRcpt = "";
+                if($demande->getDateTrt() !=null)
+                    $dateTrt = $demande->getDateTrt()->format('Y-m-d H:i:s');
+                if($demande->getDateReception() != null)
+                    $dateRcpt = $demande->getDateReception()->format('Y-m-d H:i:s');
+
                 fputcsv(
                     $handle,
                     [$demande->getId(), $demande->getNumDemande(), $demande->getCodEtatDemande(),
                         $demande->getCodeOrigine(), $demande->getIndConfirmPro(), $demande->getNumEpj(),
-                        $demande->getNatPro(), $demande->getDateTrt()->format('Y-m-d H:i:s'),
-                        $demande->getDateReception()->format('Y-m-d H:i:s'),
+                        $demande->getNatPro(), $dateTrt, $dateRcpt,
                         $demande->getModerateur(), $demande->getImLabelDd()
                     ],
                     ';'

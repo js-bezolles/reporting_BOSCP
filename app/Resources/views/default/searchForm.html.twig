@@ -55,10 +55,14 @@
         </div>
     </div>
     <div class="row justify-content-md-center" style="padding-top: 5px;padding-bottom: 5px;">
+        <div style="float:left;padding-left: 15px;">
+            <a class="export btn btn-primary" href="{{ path('export_liste_demande_filtre') }}">
+                Exporter <span class="glyphicon glyphicon-save"></span></a>
+        </div>
+
         <div style="float: right;padding-right: 15px;">
-            {#{{ form_widget(form.recherche) }}#}
-            <button type="submit" id="between_date_search_recherche" name="between_date_search[recherche]" class="btn btn-primary">
-                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Rechercher
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Rechercher
             </button>
             <button id="searchBtn" type="button" data-toggle="collapse" data-target="#moreSearch" class="btn btn-secondary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -67,7 +71,6 @@
     </div>
 </div>
 {{ form_end(form) }}
-
 <script type="text/javascript">
     $(document).ready(function(){
         $('.datepicker').datepicker({
