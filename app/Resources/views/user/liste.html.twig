@@ -2,6 +2,7 @@
 
 {% block body %}
     <h1 class="titre-liste">Liste des Utilisateurs :</h1>
+    <hr />
     <div class="table-responsive">
         <table id="userTable" class="table table-striped table-bordered">
             <thead>
@@ -17,8 +18,16 @@
             {% for user in users %}
                 <tr>
                     <td><a href="{{ path('fos_user_profile_show', { 'id': user.id }) }}">{{ user.username }}</a></td>
-                    <td>{% for partenaire in  user.partenaires %}{{ partenaire }}{% endfor %}</td>
-                    <td>{% for role in user.roles %}{{ user.role }}{% endfor %}</td>
+                    <td>
+                        {% for partenaire in  user.partenaires %}
+                            {{ partenaire }} /
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for role in user.roles %}
+                            {{ user.role }}
+                        {% endfor %}
+                    </td>
                     <td><input type="checkbox" aria-label="Checkbox for following text input" disabled></td>
                     <script>
                         $(function (){
@@ -30,11 +39,12 @@
                         });
                     </script>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('fos_user_profile_edit', { 'id': user.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <a class="btn btn-primary" href="{{ path('fos_user_profile_show', { 'id': user.id }) }}">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                        <a class="btn btn-primary" href="{{ path('fos_user_profile_edit', { 'id': user.id }) }}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
@@ -42,10 +52,11 @@
         </table>
     </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('fos_user_registration_register') }}">Créer un nouvel utilisateur</a>
-        </li>
-    </ul>
+    <div style="text-align: center">
+        <a class="btn btn-success" href="{{ path('fos_user_registration_register') }}">
+            Ajouter un utilisateur <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+
 
 {% endblock %}

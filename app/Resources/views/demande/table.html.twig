@@ -3,15 +3,15 @@
         <thead>
         <tr>
             <th>Demande</th>
-            {#<th>Etat</th>#}
+            <th>Etat</th>
             <th>Origine</th>
-            {#<th>Confirm Pro</th>#}
+            <th>Pro</th>
             <th>EPJ</th>
             <th>Nat Pro</th>
             <th>Réception</th>
-            <th>Jour Réception</th>
+            <th>Jour Rcpt</th>
             <th>Traitement</th>
-            <th>Jour Traitement</th>
+            <th>Jour Trt</th>
             <th>Modérateur</th>
             <th>Label DD</th>
         </tr>
@@ -20,9 +20,9 @@
         {% for demande in demandes %}
             <tr>
                 <td>{{ demande.numdemande }}</td>
-                {#<td>{{ demande.codetatdemande }}</td>#}
+                <td>{{ demande.codetatdemande }}</td>
                 <td>{{ demande.codeorigine }}</td>
-                {#<td>{{ demande.indconfirmpro }}</td>#}
+                <td>{{ demande.indconfirmpro }}</td>
                 <td>{{ demande.numepj }}</td>
                 <td>{{ demande.natpro }}</td>
                 <td>{% if demande.datereception %}{{ demande.datereception|date('Y-m-d H:i') }}{% endif %}</td>

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Moderateurs list</h1>
-
+    <h1>Liste des Modérateurs</h1>
+    <hr />
     <table>
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for moderateur in moderateurs %}
@@ -17,23 +17,23 @@
                 <td><a href="{{ path('moderateur_show', { 'id': moderateur.id }) }}">{{ moderateur.id }}</a></td>
                 <td>{{ moderateur.nom }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('moderateur_show', { 'id': moderateur.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('moderateur_edit', { 'id': moderateur.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-primary" href="{{ path('moderateur_show', { 'id': moderateur.id }) }}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    <a class="btn btn-primary" href="{{ path('moderateur_edit', { 'id': moderateur.id }) }}">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('moderateur_new') }}">Create a new moderateur</a>
-        </li>
-    </ul>
+    <div style="text-align: center">
+        <a class="btn btn-success" href="{{ path('moderateur_new') }}">
+            Ajouter un modérateur <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+
+
 {% endblock %}
