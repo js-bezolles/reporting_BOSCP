@@ -9,14 +9,16 @@
         <div class="col-md-12">
             <div class="panel panel-default text-center">
                 <div class="panel-body" id="home-top-body-panel">
-                    <div class="col-md-2 home-top-inner-body-div" id="ratioHomeTopPanel">
-                        {% include 'globals/ratioHomeTopPanel.html.twig' %}
-                    </div>
-                    <div class="col-md-3 home-top-inner-body-div" id="traiteesHomeTopPanel">
-                        {% include 'globals/traiteesHomeTopPanel.html.twig' %}
-                    </div>
-                    <div class="col-md-5 home-top-inner-body-div" id="enCoursHomeTopPanel">
-                        {% include 'globals/enCoursHomeTopPanel.html.twig' %}
+                    <div>
+                        <div class="col-md-2 home-top-inner-body-div" id="ratioHomeTopPanel">
+                            {% include 'globals/ratioHomeTopPanel.html.twig' %}
+                        </div>
+                        <div class="col-md-3 home-top-inner-body-div" id="traiteesHomeTopPanel">
+                            {% include 'globals/traiteesHomeTopPanel.html.twig' %}
+                        </div>
+                        <div class="col-md-5 home-top-inner-body-div" id="enCoursHomeTopPanel">
+                            {% include 'globals/enCoursHomeTopPanel.html.twig' %}
+                        </div>
                     </div>
                     <div class="col-md-2 home-top-inner-body-div" id="partenaireHomeTopPanel">
                         <table id="partenaire_filter_table">
@@ -30,7 +32,6 @@
                             {% for partenaire in app.user.partenaires %}
                                 {% include 'globals/ligneTablePartenaire.html.twig' with {'id' : partenaire.id, 'nom' : partenaire.nom} %}
                             {% endfor %}
-
                         </table>
                     </div>
                 </div>
