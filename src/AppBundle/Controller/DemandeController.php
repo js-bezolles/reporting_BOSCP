@@ -476,6 +476,7 @@ class DemandeController extends Controller
         $chartLabels4Week = $em->getRepository('AppBundle:Demande')->createChartLabels($day, 28);
         $chartDatasEnCours4Week = $em->getRepository('AppBundle:Demande')->findChartDatasEnCours($day, 28, $idPartenaire);
         $chartDatasTraitees4Week = $em->getRepository('AppBundle:Demande')->findChartDatasTraitees($day, 28, $idPartenaire);
+        $chartDatasTraiteesAuto4Week = $em->getRepository('AppBundle:Demande')->findChartDatasTraiteesAuto($day, 28);
 
         //$chartLabels1Week = $em->getRepository('AppBundle:Demande')->createChartLabels(7);
         //$chartDatasEnCours1Week = $em->getRepository('AppBundle:Demande')->findChartDatasEnCours(7);
@@ -488,6 +489,7 @@ class DemandeController extends Controller
                 'chartLabels4Week' => $chartLabels4Week,
                 'chartDatasEnCours4Week' => $chartDatasEnCours4Week,
                 'chartDatasTraitees4Week' => $chartDatasTraitees4Week,
+                'chartDatasTraiteesAuto4Week' => $chartDatasTraiteesAuto4Week,
                 'chartLabelsRatio' => $chartLabels4Week,
                 'chartDatasRatio' => $chartDatasRatio
             )

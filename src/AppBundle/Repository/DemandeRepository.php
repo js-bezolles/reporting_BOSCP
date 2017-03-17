@@ -699,6 +699,40 @@ class DemandeRepository extends EntityRepository
         return $data;
     }
 
+    public function findChartDatasTraiteesAuto(\DateTime $day, $nbJours){
+        $data = [];
+        $cptJours = 0;
+
+        $dateMin = clone $day;
+        $dateMin->setTime(0, 0, 0);
+        $dateMax = clone $dateMin;
+        $dateMax->add(new \DateInterval('P1D'));
+
+        $previous_day = clone $day;
+
+        while ($cptJours < $nbJours) {
+            // substract 1 day
+            $dateMin->sub(new \DateInterval('P1D'));
+            $dateMax->sub(new \DateInterval('P1D'));
+
+            $qb = $this->getEntityManager()->createQueryBuilder();
+            $qb->select('count(d.num_demande)')
+                ->from('AppBundle:demande', 'd')
+                ->where('d.date_trt < :dateMax')
+                ->andWhere('d.date_trt >= :dateMin')
+                ->andWhere('d.moderateur is NULL')
+                ->setParameter('dateMax', $dateMax)
+                ->setParameter('dateMin', $dateMin);
+            $count = $qb->getQuery()->getSingleScalarResult();
+
+            array_push($data, $count);
+            $cptJours = $cptJours + 1;
+        }
+        $data = array_reverse($data);
+
+        return $data;
+    }
+
     public function findChartDatasRatio(\DateTime $day, $nbJours, $idPartenaire)
     {
         $data = [];
