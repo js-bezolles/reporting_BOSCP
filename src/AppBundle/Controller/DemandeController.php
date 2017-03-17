@@ -261,8 +261,8 @@ class DemandeController extends Controller
 
         $demandeEnCours = $em->getRepository('AppBundle:Demande')->findNbEnCours($day, $idPartenaire);
         $demandeEnCoursOlder48h = $em->getRepository('AppBundle:Demande')->findNbEnCoursOlder48h($day, $idPartenaire);
-        $demandesArriveesAuj = $em->getRepository('AppBundle:Demande')->findNbArrivees($day);
-        $datePlusAncienneEnCours = $em->getRepository('AppBundle:Demande')->findOlderEnCours($day);
+        $demandesArriveesAuj = $em->getRepository('AppBundle:Demande')->findNbArrivees($day, $idPartenaire);
+        $datePlusAncienneEnCours = $em->getRepository('AppBundle:Demande')->findOlderEnCours($day, $idPartenaire);
         $avgDeltaTraitement = $em->getRepository('AppBundle:Demande')->averageDeltaTraitement($day, $idPartenaire);
         $averageDeltaDelaiTraitement = $em->getRepository('AppBundle:Demande')->averageDeltaDelaiTraitement($day, $idPartenaire);
 
@@ -424,7 +424,7 @@ class DemandeController extends Controller
         $demandeEnCours = $em->getRepository('AppBundle:Demande')->findNbEnCours($day, $idPartenaire);
         $demandeEnCoursOlder48h = $em->getRepository('AppBundle:Demande')->findNbEnCoursOlder48h($day, $idPartenaire);
         $demandesArriveesAuj = $em->getRepository('AppBundle:Demande')->findNbArrivees($day, $idPartenaire);
-        $datePlusAncienneEnCours = $em->getRepository('AppBundle:Demande')->findOlderEnCours($day);
+        $datePlusAncienneEnCours = $em->getRepository('AppBundle:Demande')->findOlderEnCours($day, $idPartenaire);
         $avgDeltaTraitement = $em->getRepository('AppBundle:Demande')->averageDeltaTraitement($day, $idPartenaire);
         $avgDeltaDelaiTraitement = $em->getRepository('AppBundle:Demande')->averageDeltaDelaiTraitement($day, $idPartenaire);
 
