@@ -75,7 +75,6 @@ class DemandeRepository extends EntityRepository
      */
     public function findByUserAndByDate($user, $data, $offset, $limit, $estDemandeTraitee)
     {
-
         $debutRcpt = $data['debutRcpt'];
         $finRcpt = $data['finRcpt'];
         $debutTrt = $data['debutTrt'];
@@ -184,13 +183,10 @@ class DemandeRepository extends EntityRepository
             $qb->andWhere('DAYOFWEEK(d.date_trt) IN (:type_jour_traitement)');
             $qb->setParameter('type_jour_traitement', $type_jour_traitement);
         }
-        if($estDemandeTraitee != null)
-        {
-            if($estDemandeTraitee)
-                $qb->andWhere('d.date_trt IS NOT NULL');
-            if(!$estDemandeTraitee)
-                $qb->andWhere('d.date_trt IS NULL');
-        }
+        if($estDemandeTraitee == 1)
+            $qb->andWhere('d.date_trt IS NOT NULL');
+        if($estDemandeTraitee == 0)
+            $qb->andWhere('d.date_trt IS NULL');
         if($limit != null)
             $qb->setMaxResults( $limit );
         if($offset != null)

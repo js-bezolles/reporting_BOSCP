@@ -138,9 +138,8 @@ class DemandeController extends Controller
             if ($form->isSubmitted() && $form->isValid()) {
                 $dataResult = $form->getData();
 
-                $demandesTraitees = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,true);
-                $demandesEnCours = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,false);
-
+                $demandesTraitees = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,1);
+                $demandesEnCours = $em->getRepository('AppBundle:Demande')->findByUserAndByDate($user,$dataResult,$offset,$limit,0);
                 return $this->render('demande/index.html.twig', array(
                     'demandes' => array (
                         array('data' => $demandesTraitees, 'label' => 'Traitées', 'id' => 'traitees'),
